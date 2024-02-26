@@ -47,7 +47,7 @@
                 <h2 class="page-title">Add Posts</h2>
                 <?php include(ROOT_PATH . "/app/helpers/formErrors.php");  ?>
 
-                <form action="create.php" method="post">
+                <form action="create.php" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="">Title</label>
                         <input type="text" name="title" value="<?php echo $title ?>" class="text-input">
@@ -77,10 +77,18 @@
                         </select>
                     </div>
                     <div>
-                        <label> 
-                                <input type="checkbox" name="published">
-                                Publish
-                        </label>
+                        <?php if (empty($published)): ?>
+                            <label> 
+                                    <input type="checkbox" name="published">
+                                    Publish
+                            </label>
+                        <?php else: ?>
+                            <label> 
+                                    <input type="checkbox" name="published" checked>
+                                    Publish
+                            </label>
+                        <?php endif; ?>
+                    
                     </div>
                     <div>
                         <button type="submit" name="add-post" class="btn btn-big">Add Post</button>
