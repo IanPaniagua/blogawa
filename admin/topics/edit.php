@@ -41,11 +41,11 @@
                 <a href="create.php" class="btn btn-big">Add Topic</a>
                 <a href="index.php" class="btn btn-big">Manage Topics</a>
             </div>
-
+        
             <div class="content">
 
                 <h2 class="page-title">Edit Topic</h2>
-
+                <?php include(ROOT_PATH . "/app/helpers/formErrors.php");  ?>
                 <form action="edit.php" method="post">
                     <!-- id -->
                 <input type="hidden" name="id" value="<?php echo $id; ?>">

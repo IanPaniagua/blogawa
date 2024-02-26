@@ -1,4 +1,5 @@
 <?php include("../../path.php"); ?>
+<?php include(ROOT_PATH . "/app/controllers/posts.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +44,7 @@
             <div class="conten">
 
                 <h2 class="page-title">Manage Posts</h2>
+                <?php include(ROOT_PATH . "/app/includes/messages.php");?>
 
                 <table>
                     <head>
@@ -52,22 +54,21 @@
                         <th colspan="3">Action</th>
                     </head>
                     <tbody>
+                    <?php foreach($posts as $key =>$post): ?>
                         <tr>
-                            <td>1</td>
-                            <td>This is the first post</td>
-                            <td>Ian</td>
-                            <td><a href="#" class="edit">edit</a></td>
-                            <td><a href="#" class="delete">delete</a></td>
-                            <td><a href="#" class="publish">publish</a></td>
+                            <td><?php echo $key +1 ?></td>
+                            <td><?php echo $post['title']; ?></td>
+                            <td>nombre del creador</td>
+                            <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">edit</a></td>
+                            <td><a href="index.php?del_id=<?php echo $post['id']; ?>" class="delete">delete</a></td>
+                            <?php if ($post['published']): ?>
+                                <td><a href="#" class="unpublish">unpublish</a></td>
+                            <?php else: ?>
+                                <td><a href="#" class="publish">publish</a></td>
+                            <?php endif; ?>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>This is the first post</td>
-                            <td>Samu</td>
-                            <td><a href="#" class="edit">edit</a></td>
-                            <td><a href="#" class="delete">delete</a></td>
-                            <td><a href="#" class="publish">publish</a></td>
-                        </tr>
+                        <?php endforeach; ?>
+                     
                     </tbody>
                 </table>
             </div>
