@@ -26,6 +26,17 @@ if (isset($_GET['id'])) {
    // dd($post);
 }
 
+if (isset($_GET['del_id'])) {
+   $id = $_GET['del_id'];
+   $count = delete($table, $id);
+   $_SESSION['message'] = 'Topic deleted successfully';
+   $_SESSION['type'] = 'success';
+   header('location: '.BASE_URL. '/admin/posts/index.php');
+   exit();
+ 
+ // dd($_POST);
+}
+
  if (isset($_POST['add-post'])) {
    // dd($_FILES['image']);
    $errors = validatePost($_POST);
@@ -53,9 +64,9 @@ if (isset($_GET['id'])) {
 
       $post_id = create($table, $_POST);
       header('location: '.BASE_URL. '/admin/posts/index.php');
-      $_SESSION['message'] = 'Post created successfully';
+      $_SESSION['message'] = 'Post deleted successfully';
       $_SESSION['type'] = 'success';
-      
+      exit();
    }else {
       $title = $_POST['title'];
       $body = $_POST['body'];
@@ -91,7 +102,7 @@ if (isset($_POST['update-post'])) {
       header('location: '.BASE_URL. '/admin/posts/index.php');
       $_SESSION['message'] = 'Post updated successfully';
       $_SESSION['type'] = 'success';
-      
+      exit();
    }else {
       $title = $_POST['title'];
       $body = $_POST['body'];
