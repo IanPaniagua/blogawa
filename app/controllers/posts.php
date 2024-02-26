@@ -22,6 +22,8 @@ $posts = selectAll($table);
       unset($_POST['add-post'], $_POST['topic_id']);
       $_POST['user_id'] = 1;
       $_POST['published'] = isset($_POST['published']) ? 1 : 0;
+      $_POST['body'] = htmlentities($_POST['body']);
+
       $post_id = create($table, $_POST);
       header('location: '.BASE_URL. '/admin/posts/index.php');
       $_SESSION['message'] = 'Post created successfully';
