@@ -18,10 +18,14 @@ function validateUser($user) {
 
     $existingUser = selectOne('users', ['email' => $user['email']]);
     if(($existingUser)) {
-        array_push($errors, 'Email already exists');
-    }
-
-    return $errors;
+        if (isset($user['update-user']) && $existingUser  ['id'] != $user['id']) {
+            array_push($errors, 'User already exists');
+        }
+        if(isset($user['add-user'])) {
+            array_push($errors, 'User already exists');
+        }
+}
+return($errors);
 }
 // VALIDATE LOGIN
 function validatelogin($user) {

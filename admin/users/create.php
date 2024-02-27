@@ -66,7 +66,7 @@
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-big">Add User</button>
+                        <button type="submit" name="add-user" class="btn btn-big">Add User</button>
                     </div>
                 </form>
             </div>
