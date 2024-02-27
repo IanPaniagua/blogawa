@@ -33,8 +33,17 @@ if (isset($_GET['del_id'])) {
    $_SESSION['type'] = 'success';
    header('location: '.BASE_URL. '/admin/posts/index.php');
    exit();
- 
- // dd($_POST);
+}
+
+if (isset($_GET['published']) && isset($_GET['p_id'])){
+   $published = $_GET['published'];
+   $p_id = $_GET['p_id'];
+   // ... update published 
+   $count = update($table, $p_id, ['published' => $published]);
+   $_SESSION['message'] = 'Post published state changed!';
+   $_SESSION['type'] = 'success';
+   header('location: '.BASE_URL. '/admin/posts/index.php');
+   exit();
 }
 
  if (isset($_POST['add-post'])) {
