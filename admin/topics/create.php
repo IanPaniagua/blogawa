@@ -45,7 +45,7 @@
             <div class="content">
 
                 <h2 class="page-title">Add Topic</h2>
-                <?php include(ROOT_PATH . "/app/helpers/formErrors.php");  ?>
+                <?php include(ROOT_PATH . "/app/helpers/formErrors.php");?>
 
                 <form action="create.php" method="post">
                     <div>

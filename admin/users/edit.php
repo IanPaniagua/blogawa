@@ -43,29 +43,37 @@
 
                 <h2 class="page-title">Edit User</h2>
 
-                <form action="create.html" method="post">
-                    <div>
+                <form action="create.php" method="post">
+                    <!-- ID hidden-->
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <div>
                         <label for="">Username</label>
-                        <input type="text" name="username" class="text-input">
+                        <input type="text" name="username" value="<?php echo $username ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Email</label>
-                        <input type="email" name="email" class="text-input">
+                        <input type="email" name="email" value="<?php echo $email ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Passwort</label>
-                        <input type="passwort" name="passwort" class="text-input">
+                        <input type="password" name="password" value="<?php echo $password ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Passwort Confirmation</label>
-                        <input type="passwort" name="passwortConf" class="text-input">
+                        <input type="password" name="passwordConf" value="<?php echo $passwordConf ?>" class="text-input">
                     </div>
                     <div>
-                        <label for="">Role</label>
-                        <select name="role" class="text-input">
-                            <option value="Author">Author</option>
-                            <option value="Admin">Admin</option>
-                        </select>
+                        <?php if(isset($admin) && $admin == 1): ?>
+                        <label >
+                        <input type="checkbox" name="admin" checked>
+                        Admin
+                        </label>
+                        <?php else: ?>
+                        <label >
+                        <input type="checkbox" name="admin">
+                        Admin
+                        </label>   
+                        <?php endif; ?>
                     </div>
                     <div>
                         <button type="submit" name="update-user" class="btn btn-big">Update User</button>
