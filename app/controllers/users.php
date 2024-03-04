@@ -6,7 +6,7 @@
 
 
 $table = 'users';
-$admin_users = selectAll($table, ['admin' => 1]);
+$admin_users = selectAll($table);
 
 $errors = array();
 $admin ='';
@@ -102,7 +102,7 @@ if (isset($_GET['id'])) {
 
   $id = $user['id'];
   $username = $user['username'];
-  $admin = isset($user['admin']) ? 1 : 0;
+  $admin = $user['admin'] == 1 ? 1 : 0;
   $email = $user['email'];
 }
  // LOGIN CHECK
