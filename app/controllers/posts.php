@@ -1,6 +1,7 @@
 <?php
  
  include(ROOT_PATH . "/app/database/db.php" );
+ include(ROOT_PATH . "/app/helpers/middleware.php" );
  include(ROOT_PATH . "/app/helpers/validatePost.php" );
 
 $table = 'posts';
@@ -27,6 +28,7 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_GET['del_id'])) {
+   adminOnly();
    $id = $_GET['del_id'];
    $count = delete($table, $id);
    $_SESSION['message'] = 'Topic deleted successfully';
@@ -36,6 +38,7 @@ if (isset($_GET['del_id'])) {
 }
 
 if (isset($_GET['published']) && isset($_GET['p_id'])){
+   adminOnly();
    $published = $_GET['published'];
    $p_id = $_GET['p_id'];
    // ... update published 
@@ -47,6 +50,8 @@ if (isset($_GET['published']) && isset($_GET['p_id'])){
 }
 
  if (isset($_POST['add-post'])) {
+   adminOnly();
+
    // dd($_FILES['image']);
    $errors = validatePost($_POST);
 
@@ -85,6 +90,8 @@ if (isset($_GET['published']) && isset($_GET['p_id'])){
 }
   
 if (isset($_POST['update-post'])) {
+   adminOnly();
+
    $errors = validatePost($_POST);
    if (!empty($_FILES['image']['name'])) {
       $image_name = time(). '_'. $_FILES['image']['name'];

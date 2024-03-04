@@ -1,7 +1,9 @@
 <?php
 
  include(ROOT_PATH . "/app/database/db.php" );
+ include(ROOT_PATH . "/app/helpers/middleware.php" );
  include(ROOT_PATH . "/app/helpers/validateUser.php" );
+
 
 $table = 'users';
 $admin_users = selectAll($table, ['admin' => 1]);
@@ -68,6 +70,7 @@ if (isset($_POST['register-btn']) || isset($_POST['create-admin'])){
 //update 
 if (isset($_POST['update-user']))
 {
+  adminOnly();
   $errors = validateUser($_POST);
   // dd($errors);
   if(count($errors) === 0){
@@ -122,6 +125,7 @@ if (isset($_GET['id'])) {
   // dd($_POST);
 }
 if (isset($_GET['del_id'])) {
+  adminOnly();
   $count = delete($table, $_GET['del_id']);
   $_SESSION['message'] = "Admin user deleted ";
   $_SESSION['type'] = "success";

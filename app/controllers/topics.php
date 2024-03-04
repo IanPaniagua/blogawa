@@ -1,7 +1,9 @@
 <?php
  
  include(ROOT_PATH . "/app/database/db.php" );
+ include(ROOT_PATH . "/app/helpers/middleware.php" );
  include(ROOT_PATH . "/app/helpers/validateTopic.php" );
+
 
 $table = 'topics';
 
@@ -14,6 +16,8 @@ $description = '';
 
 
  if (isset($_POST['add-topic'])) {
+  adminOnly();
+
     $errors = validateTopic($_POST);
 
     if (count($errors) === 0) {
@@ -41,6 +45,8 @@ $description = '';
  }
 
  if (isset($_GET['del_id'])) {
+  adminOnly();
+
     $id = $_GET['del_id'];
     $count = delete($table, $id);
     $_SESSION['message'] = 'Topic deleted successfully';
@@ -52,6 +58,8 @@ $description = '';
  }
 
  if (isset($_POST['update-topic'])) {
+  adminOnly();
+
   // dd($_POST);
   $errors = validateTopic($_POST);
 
