@@ -1,7 +1,9 @@
 <?php
  include("path.php");
- 
  include(ROOT_PATH . "/app/controllers/topics.php");
+
+ $posts = getPublishedPost();
+//  dd($posts);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,60 +39,21 @@
         <i class="fas fa-chevron-right next"></i>
             <!-- Single post -->
         <div class="post-wrapper">   
-            <div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div>
-            <div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div><div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div><div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div><div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div><div class="post">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="slider-image">
-                <div class="post-info">
-                    <h4><a href="single.html">The history about a fahter and his son</a></h4>
-                    <i class="far fa-user">Ian Paniagua</i>
-                    &nbsp;
-                    <i class="far fa-calendar">Friday 26, 2024</i>
-                </div>
-            </div>
-            
 
+        <?php foreach ($posts as $post): ?>
+            <div class="post">
+                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="slider-image">
+                <div class="post-info">
+                    <h4><a href="single.html"><?php echo $post['title']; ?></a></h4>
+                    <i class="far fa-user"><?php echo $post['username']; ?></i>
+                    &nbsp;
+                    <i class="far fa-calendar"><?php echo date('F  j,  Y', strtotime($post['created_at'])) ; ?></i>
+                </div>
+            </div>
+        <?php endforeach;?>
+        
         </div>
-        </div>
+    </div>
         <!-- // Post Slider(carousel) -->
 
         <!-- Content Post-->
@@ -98,72 +61,21 @@
         <!-- Main Content Post-->
         <div class="main-content">
             <h2 class="recent-post-title">Recent Posts</h2>
-        
+        <?php foreach($posts as $post): ?>
             <div class="post clearfix">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="post-image">
+                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="post-image">
                 <div class="post-preview">
-                    <h1><a href="single.html">Title of the post</a></h1>
-                <i class="far fa-user">Ian Paniagua</i>
+                    <h1><a href="single.html"><?php echo $post['title']; ?></a></h1>
+                <i class="far fa-user"><?php echo $post['username']; ?></i>
                 &nbsp;
-                <i class="far calendar">Saturday 27, 2024</i>
+                <i class="far calendar"><?php echo date('F j, Y', strtotime($post['created_at'])) ; ?></i>
                 <p class="preview-text">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, recusandae nihil! Illo iure est eos.
+                    <?php echo html_entity_decode(substr($post['body'], 0, 150) . '...') ?>
                 </p>
                 <a href="single.html" class="btn read-more">Read More</a>
                 </div>
             </div>
-            <div class="post clearfix">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="post-image">
-                <div class="post-preview">
-                    <h1><a href="single.html">Title of the post</a></h1>
-                <i class="far fa-user">Ian Paniagua</i>
-                &nbsp;
-                <i class="far calendar">Saturday 27, 2024</i>
-                <p class="preview-text">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, recusandae nihil! Illo iure est eos.
-                </p>
-                <a href="single.html" class="btn read-more">Read More</a>
-                </div>
-            </div>
-            <div class="post clearfix">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="post-image">
-                <div class="post-preview">
-                    <h1><a href="single.html">Title of the post</a></h1>
-                <i class="far fa-user">Ian Paniagua</i>
-                &nbsp;
-                <i class="far calendar">Saturday 27, 2024</i>
-                <p class="preview-text">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, recusandae nihil! Illo iure est eos.
-                </p>
-                <a href="single.html" class="btn read-more">Read More</a>
-                </div>
-            </div>
-            <div class="post clearfix">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="post-image">
-                <div class="post-preview">
-                    <h1><a href="single.html">Title of the post</a></h1>
-                <i class="far fa-user">Ian Paniagua</i>
-                &nbsp;
-                <i class="far calendar">Saturday 27, 2024</i>
-                <p class="preview-text">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, recusandae nihil! Illo iure est eos.
-                </p>
-                <a href="single.html" class="btn read-more">Read More</a>
-                </div>
-            </div>
-            <div class="post clearfix">
-                <img src="assets/images/father-and-son-2258681_1280.jpg" alt="" class="post-image">
-                <div class="post-preview">
-                    <h1><a href="single.html">Title of the post</a></h1>
-                <i class="far fa-user">Ian Paniagua</i>
-                &nbsp;
-                <i class="far calendar">Saturday 27, 2024</i>
-                <p class="preview-text">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, recusandae nihil! Illo iure est eos.
-                </p>
-                <a href="single.html" class="btn read-more">Read More</a>
-                </div>
-            </div>
+        <?php endforeach;?>
         </div>
         <!-- // Main Content Post-->
 

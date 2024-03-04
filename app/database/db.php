@@ -125,13 +125,20 @@ function delete($table, $id)
     $stmt = executQuery($sql, ['id' => $id]);
     return $stmt->affected_rows;
 }
+// selectin from 2 diferents tables
+function getPublishedPost(){
+    global $conn;
+    // SELECT * FROM posts WHERE published=1
+    $sql = "SELECT po.*, u.username 
+    FROM posts AS po 
+    JOIN users AS u ON po.user_id=u.id 
+    WHERE po.published=?";
 
-// $data =  [
-//     'username' => 'Pepe Luis',
-//     'admin'  => 1,
-//     'email' => 'pepe@gmail.com',
-//     'password' => 'pepe'
-// ];
+$stmt = executQuery($sql, ['published' => 1]);
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
+
 
 
 
