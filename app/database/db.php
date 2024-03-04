@@ -138,6 +138,20 @@ $stmt = executQuery($sql, ['published' => 1]);
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+function gestPostsByTopicId($topic_id){
+    global $conn;
+    $sql = "SELECT po.*, u.username 
+    FROM posts AS po 
+    JOIN users AS u ON po.user_id=u.id 
+    WHERE po.published=?
+    AND topic_id=?";
+
+    $stmt = executQuery($sql, ['published' => 1, 'topic_id' => $topic_id]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+
 // SEARCH FUNCTION
 function searchPosts($term){
     $match = '%' . $term . '%';
@@ -153,6 +167,8 @@ $stmt = executQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+
+
 
 
 

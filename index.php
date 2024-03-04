@@ -5,8 +5,12 @@
 $posts = array();
 $postsTitle = 'Recent Posts';
 
-// search funcitonality
-if(isset($_POST['search-term'])){
+
+
+if(isset($_GET['t_id'])){
+    $postsTitle = "You searched for post under '" . $_GET['name'] ."'";
+    $posts = gestPostsByTopicId($_GET['t_id']);
+}else if(isset($_POST['search-term'])){
     $postsTitle = "You searched for '" . $_POST['search-term'] ."'";
     $posts = searchPosts($_POST['search-term']);
 }else{
@@ -22,7 +26,7 @@ if(isset($_POST['search-term'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Y-UA-Compatible" content="ie-edge">
     <title>Blog_Family</title>
-
+    <link rel="stylesheet" href="assets/css/style.css">
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/3922761f25.js" crossorigin="anonymous"></script>
 
@@ -31,8 +35,7 @@ if(isset($_POST['search-term'])){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Candal&family=Lora:wght@400;500;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
 
-    <!--Custom Styling-->
-    <link rel="stylesheet" href="assets/css/style.css">
+    
 </head>
 <body>
     
@@ -54,7 +57,7 @@ if(isset($_POST['search-term'])){
             <div class="post">
                 <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="slider-image">
                 <div class="post-info">
-                    <h4><a href="single.html"><?php echo $post['title']; ?></a></h4>
+                    <h4><a href="single.php?id=<?php echo $post['id'];?>"><?php echo $post['title']; ?></a></h4>
                     <i class="far fa-user"><?php echo $post['username']; ?></i>
                     &nbsp;
                     <i class="far fa-calendar"><?php echo date('F  j,  Y', strtotime($post['created_at'])) ; ?></i>
@@ -70,19 +73,19 @@ if(isset($_POST['search-term'])){
     <div class="content clearfix">
         <!-- Main Content Post-->
         <div class="main-content">
-            <h2 class="recent-post-title"><?php echo $postsTitle ?> </h2>
+            <h1 class="recent-post-title"><?php echo $postsTitle ?> </h1>
         <?php foreach($posts as $post): ?>
             <div class="post clearfix">
                 <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="post-image">
                 <div class="post-preview">
-                    <h1><a href="single.html"><?php echo $post['title']; ?></a></h1>
+                    <h2><a href="single.php?id=<?php echo $post['id'];?>"><?php echo $post['title']; ?></a></h2>
                 <i class="far fa-user"><?php echo $post['username']; ?></i>
                 &nbsp;
                 <i class="far calendar"><?php echo date('F j, Y', strtotime($post['created_at'])) ; ?></i>
                 <p class="preview-text">
                     <?php echo html_entity_decode(substr($post['body'], 0, 150) . '...') ?>
                 </p>
-                <a href="single.php" class="btn read-more">Read More</a>
+                <a href="single.php?id=<?php echo $post['id'];?>" class="btn read-more">Read More</a>
                 </div>
             </div>
         <?php endforeach;?>
@@ -101,9 +104,9 @@ if(isset($_POST['search-term'])){
             <div class="section topics">
                 <h2 class="section-title">Topics</h2>
                 <ul>
-                    <?php foreach($topics as $key =>$topic): ?>
-                        <li><a href="#"><?php echo $topic['name'] ?></a></li>
-                    <?php endforeach; ?>
+                <?php foreach($topics as $topic): ?>
+                    <li><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' .$topic['name'];  ?>"><?php echo $topic['name']; ?></a></li>
+                <?php endforeach; ?>
                 </ul>
             </div>
         </div>
