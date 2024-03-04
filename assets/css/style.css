@@ -24,11 +24,11 @@ a{
     clear:both;
 }
 .btn {
-    /* padding: .5rem 1rem */
+    padding: 0.5rem 1rem;
     background: #006669;
     color: white;
     border: 1px solid transparent;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     font-size: 1.08em;
     font-family: 'Lora', serif;
 }
@@ -274,7 +274,7 @@ header .menu-toggle {
     
 }
 
-.content .main-content .post .read-more{
+.content .main-content .post .read-more {
     position: absolute;
     bottom: 10px;
     right: 10px;

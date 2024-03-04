@@ -138,7 +138,21 @@ $stmt = executQuery($sql, ['published' => 1]);
 $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 return $records;
 }
+// SEARCH FUNCTION
+function searchPosts($term){
+    $match = '%' . $term . '%';
+    global $conn;
+    // SELECT * FROM posts WHERE published=1
+    $sql = "SELECT po.*, u.username 
+    FROM posts AS po 
+    JOIN users AS u ON po.user_id=u.id 
+    WHERE po.published=?
+    AND po.title LIKE ? OR po.body LIKE ?";
 
+$stmt = executQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
+$records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+return $records;
+}
 
 
 

@@ -2,8 +2,18 @@
  include("path.php");
  include(ROOT_PATH . "/app/controllers/topics.php");
 
- $posts = getPublishedPost();
-//  dd($posts);
+$posts = array();
+$postsTitle = 'Recent Posts';
+
+// search funcitonality
+if(isset($_POST['search-term'])){
+    $postsTitle = "You searched for '" . $_POST['search-term'] ."'";
+    $posts = searchPosts($_POST['search-term']);
+}else{
+   $posts = getPublishedPost(); 
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +70,7 @@
     <div class="content clearfix">
         <!-- Main Content Post-->
         <div class="main-content">
-            <h2 class="recent-post-title">Recent Posts</h2>
+            <h2 class="recent-post-title"><?php echo $postsTitle ?> </h2>
         <?php foreach($posts as $post): ?>
             <div class="post clearfix">
                 <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" class="post-image">
@@ -72,7 +82,7 @@
                 <p class="preview-text">
                     <?php echo html_entity_decode(substr($post['body'], 0, 150) . '...') ?>
                 </p>
-                <a href="single.html" class="btn read-more">Read More</a>
+                <a href="single.php" class="btn read-more">Read More</a>
                 </div>
             </div>
         <?php endforeach;?>
@@ -83,7 +93,7 @@
         <div class="sidebar">
             <div class="section search">
                 <h2 class="section-title">Search</h2>
-                <form action="index.html" method="post">
+                <form action="index.php" method="post">
                     <input type="text" name="search-term" class="text-input" placeholder="Search...">
                 </form>
             </div>
