@@ -42,12 +42,12 @@ if(isset($_GET['t_id'])){
   <?php include(ROOT_PATH . "/app/includes/header.php");?>
   <?php include(ROOT_PATH . "/app/includes/messages.php");?>
     
-        
+        <div class="clearfix"></div>
     <!-- Page Wrapper -->
-    <div class="page-wrapper">
+    <div class="page-wrapper ">
         <!-- Post Slider(carousel) -->
-        <div class="post-slider">
-        <h1 class="slider-title">Trending Posts</h1>
+        <div class="post-slider ">
+        <h1 class="slider-title ">Trending Posts</h1>
         <i class="fas fa-chevron-left prev"></i>
         <i class="fas fa-chevron-right next"></i>
             <!-- Single post -->
@@ -64,7 +64,6 @@ if(isset($_GET['t_id'])){
                 </div>
             </div>
         <?php endforeach;?>
-        
         </div>
     </div>
         <!-- // Post Slider(carousel) -->

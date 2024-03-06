@@ -175,10 +175,10 @@ header .menu-toggle {
 }
 
 /* POST SLIDER */
-.post-slider {
+/* .post-slider {
     position: relative;
   
-}
+} */
 .post-slider .slider-title{
     text-align: center;
     margin: 30px auto;
@@ -273,21 +273,22 @@ header .menu-toggle {
     margin-right: 10px;
     
 }
-
-.content .main-content .post .read-more {
+.content .main-content .post  .read-more{
     position: absolute;
     bottom: 10px;
     right: 10px;
     border: 1px solid #006669;
-    background: transparent;
     color: #006669 !important;
+    background: transparent;
     border-radius: 0px;
 }
-.content .main-content .post .read-more:hover {
+.content .main-content .post  .read-more:hover {
     background: #006669;
     color: white !important;
     transition: .25s;
 }
+
+
 .content .main-content .post .post-image{
     width: 40%;
     height: 100%;
